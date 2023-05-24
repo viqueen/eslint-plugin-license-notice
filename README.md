@@ -1,5 +1,6 @@
 ## eslint-plugin-license-notice
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=viqueen_eslint-plugin-license-notice&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=viqueen_eslint-plugin-license-notice)
 [![npm version](https://badge.fury.io/js/eslint-plugin-license-notice.svg)](https://badge.fury.io/js/eslint-plugin-license-notice)
 
 Ensure all your source files include the relevant license header notice
