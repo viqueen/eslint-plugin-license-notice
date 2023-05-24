@@ -12,6 +12,33 @@ brew install nvm
 brew install yarn
 ```
 
+### development
+
+- build it, this ensures the text templates are copied to the dist folder
+
+```bash
+yarn build
+```
+
+- link it locally
+
+```bash
+yarn link
+```
+
+- build it in watch mode
+
+```bash
+yarn build --watch
+```
+
+- test your local changes on your other packages
+
+```bash
+cd my-other-package
+yarn link eslint-plugin-license-notice
+```
+
 ### house-keeping
 
 - build it

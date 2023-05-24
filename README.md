@@ -17,3 +17,23 @@ yarn add eslint-plugin-license-notice -D -W
 ```
 
 ### use it
+
+- add the eslint plugin to your `.eslintrc.js`
+
+```javascript
+module.exports = {
+    ...,
+    plugins: [
+        'license-notice',
+    ],
+    rules: {
+        'license-notice/include': [
+            'error', {
+                license: 'Apache-2.0',
+                copyRightYear: '<year>',
+                copyRightName: '<name>'
+            }
+        ]
+    }
+}
+```
