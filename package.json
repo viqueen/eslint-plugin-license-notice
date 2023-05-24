@@ -1,12 +1,11 @@
 {
-  "name": "typescript-package",
+  "name": "eslint-plugin-license-notice",
   "version": "1.0.0",
-  "description": "typescript package",
-  "main": "index.js",
-  "repository": "git@github.com:viqueen/typescript-package.git",
+  "description": "eslint plugin to ensure license notice/header is included across your files",
+  "repository": "git@github.com:viqueen/eslint-plugin-license-notice.git",
   "author": "Hasnae R. <>",
   "license": "Apache-2.0",
-  "private": true,
+  "private": false,
   "files": [
     "dist"
   ],
