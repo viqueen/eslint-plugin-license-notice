@@ -1,6 +1,6 @@
-import { licenseNoticeRule } from './license-notice-rule';
+import { includeRule } from './include-rule';
 
-const licenseNotice = licenseNoticeRule();
+const licenseNotice = includeRule();
 
 const rules = {
     [licenseNotice.key]: licenseNotice.rule
