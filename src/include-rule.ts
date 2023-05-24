@@ -1,9 +1,40 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
 import type { Rule } from 'eslint';
 import * as ESTree from 'estree';
 
+const supported = new Set(['Apache-2.0']);
+
 const getFileHeader = (context: Rule.RuleContext, node: ESTree.Program) => {
     const comments = context.sourceCode.getCommentsBefore(node);
-    return comments.find((comment) => comment.type === 'Block');
+    const shebang = comments.find((comment) => {
+        return (comment as ESTree.BaseNodeWithoutComments).type === 'Shebang';
+    });
+    const header = comments.find(
+        (comment) => comment.type === 'Block' || comment.type === 'Line'
+    );
+    return {
+        header,
+        shebang
+    };
+};
+
+const generateLicenseHeader = ({
+    license,
+    copyRightName,
+    copyRightYear
+}: {
+    license: string;
+    copyRightYear: string;
+    copyRightName: string;
+}): string => {
+    const text = fs
+        .readFileSync(path.resolve(__dirname, `${license}-license.js.txt`))
+        .toString();
+    return text
+        .replace('{{copyRightYear}}', copyRightYear)
+        .replace('{{copyRightName}}', copyRightName);
 };
 
 const handleProgram = (context: Rule.RuleContext) => (node: ESTree.Program) => {
@@ -23,11 +54,19 @@ const handleProgram = (context: Rule.RuleContext) => (node: ESTree.Program) => {
         });
         return;
     }
+    if (!supported.has(license)) {
+        context.report({
+            node,
+            message: 'unsupported license'
+        });
+        return;
+    }
 
-    // handle ts files for now
-    if (!context.filename.endsWith('.ts')) return;
+    // handle (t|j)sx? files for now
+    const pattern = /^.*\.([tj])sx?$/;
+    if (!context.filename.match(pattern)) return;
 
-    const header = getFileHeader(context, node);
+    const { header } = getFileHeader(context, node);
     if (!header) {
         context.report({
             node,
@@ -36,6 +75,16 @@ const handleProgram = (context: Rule.RuleContext) => (node: ESTree.Program) => {
                 license,
                 copyRightYear,
                 copyRightName
+            },
+            fix: (fixer) => {
+                return fixer.insertTextBefore(
+                    node,
+                    generateLicenseHeader({
+                        license,
+                        copyRightYear,
+                        copyRightName
+                    })
+                );
             }
         });
     }
