@@ -1,5 +1,7 @@
 ## eslint-plugin-license-notice
 
+[![npm version](https://badge.fury.io/js/eslint-plugin-license-notice.svg)](https://badge.fury.io/js/eslint-plugin-license-notice)
+
 Ensure all your source files include the relevant license header notice
 
 ### install it
