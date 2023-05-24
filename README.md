@@ -1,44 +1,19 @@
-## typescript-package
+## eslint-plugin-license-notice
 
-Template for building node packages using Typescript
+Ensure all your source files include the relevant license header notice
 
-### environment
+### install it
 
-- **[nvm](https://github.com/nvm-sh/nvm)** to manage node versions.
-
-```bash
-brew install nvm
-```
-
-- **[yarn](https://yarnpkg.com/)** as node package manager
+- with **npm**
 
 ```bash
-brew install yarn
+npm install eslint-plugin-license-notice --save-dev
 ```
 
-### house-keeping
-
-- build it
+- with **yarn**
 
 ```bash
-yarn build
+yarn add eslint-plugin-license-notice -D -W
 ```
 
-- format it
-
-```bash
-yarn format
-```
-
-- lint it
-
-```bash
-yarn lint
-yarn lint --fix
-```
-
-- test it
-
-```bash
-yarn test
-```
+### use it

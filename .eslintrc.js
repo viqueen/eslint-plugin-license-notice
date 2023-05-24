@@ -37,6 +37,12 @@ module.exports = {
                 pathGroupsExcludedImportTypes: ['builtin'],
             },
         ],
+        'import/no-unresolved': [
+            'error',
+            {
+                ignore: ['estree'],
+            },
+        ],
     },
     settings: {
         'import/resolver': {
