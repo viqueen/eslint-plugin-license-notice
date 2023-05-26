@@ -1,4 +1,4 @@
-name: eslint-plugin-license-notice Build and Test
+name: @labset-eslint/eslint-plugin Build and Test
 on:
   push:
     branches:
