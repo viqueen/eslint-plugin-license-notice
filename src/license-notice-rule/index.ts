@@ -102,9 +102,9 @@ const handleProgram = (context: Rule.RuleContext) => (node: ESTree.Program) => {
     }
 };
 
-const includeRule = () => {
+const licenseNoticeRule = () => {
     return {
-        key: 'include',
+        key: 'license-notice',
         rule: {
             meta: {
                 docs: {
@@ -135,4 +135,4 @@ const includeRule = () => {
     };
 };
 
-export { includeRule };
+export { licenseNoticeRule };

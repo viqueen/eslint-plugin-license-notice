@@ -6,7 +6,8 @@
 A collection of eslint rules needed to ensure **labset** open-source packages are structured in a consistent way.
 
 It comes with:
-- `license-notice` rule to enforce all source files include the relevant license header notice
+
+- `license-notice-rule` rule to enforce all source files include the relevant license header notice
 
 ### install it
 
@@ -30,10 +31,10 @@ yarn add @labset-eslint/eslint-plugin -D -W
 module.exports = {
     ...,
     plugins: [
-        'license-notice',
+        '@labset-eslint/eslint-plugin',
     ],
     rules: {
-        'license-notice/include': [
+        '@labset-eslint/license-notice': [
             'error', {
                 license: 'Apache-2.0',
                 copyRightYear: '<year>',
