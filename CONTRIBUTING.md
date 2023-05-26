@@ -36,7 +36,7 @@ yarn build --watch
 
 ```bash
 cd my-other-package
-yarn link eslint-plugin-license-notice
+yarn link @labset-eslint/eslint-plugin
 ```
 
 ### house-keeping

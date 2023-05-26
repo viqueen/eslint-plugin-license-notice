@@ -1,4 +1,4 @@
-name: eslint-plugin-license-notice Publish
+name: "@labset-eslint/eslint-plugin Publish"
 
 on:
   release:
