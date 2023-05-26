@@ -1,4 +1,4 @@
-name: @labset-eslint/eslint-plugin Publish
+name: "@labset-eslint/eslint-plugin Publish"
 
 on:
   release:
