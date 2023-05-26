@@ -1,6 +1,6 @@
 {
-  "name": "eslint-plugin-license-notice",
-  "version": "1.0.0",
+  "name": "@labset/eslint-plugin-license-notice",
+  "version": "1.1.0",
   "description": "eslint plugin to ensure license notice/header is included across your files",
   "repository": "git@github.com:viqueen/eslint-plugin-license-notice.git",
   "author": "Hasnae R. <>",

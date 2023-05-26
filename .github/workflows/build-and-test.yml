@@ -1,4 +1,4 @@
-name: typescript-package Build and Test
+name: eslint-plugin-license-notice Build and Test
 on:
   push:
     branches:
