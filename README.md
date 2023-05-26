@@ -7,7 +7,7 @@ A collection of eslint rules needed to ensure **labset** open-source packages ar
 
 It comes with:
 
-- `license-notice-rule` rule to enforce all source files include the relevant license header notice
+- `license-notice` rule to enforce all source files include the relevant license header notice
 
 ### install it
 
