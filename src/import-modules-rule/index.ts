@@ -13,13 +13,81 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import * as fs from 'fs';
+import path from 'path';
+
 import { Rule } from 'eslint';
 import * as ESTree from 'estree';
 
 const handleImportDeclaration =
-    (_context: Rule.RuleContext) =>
-    (_node: ESTree.ImportDeclaration & Rule.NodeParentExtension) => {
-        // todo
+    (context: Rule.RuleContext) =>
+    (node: ESTree.ImportDeclaration & Rule.NodeParentExtension) => {
+        const [definition] = context.options;
+        if (!definition) {
+            context.report({
+                node,
+                message: 'missing import-modules configuration'
+            });
+            return;
+        }
+        const { alias, modulesDir } = definition;
+        if (!alias || !modulesDir) {
+            context.report({
+                node,
+                message: 'invalid import-modules configuration'
+            });
+            return;
+        }
+        const importValue = node.source.value as string;
+        const monorepoImport = importValue.startsWith(alias);
+
+        if (!monorepoImport) return;
+
+        const patternStr = `${alias}[-]?([^/]+)/([^/]+)`;
+        const pattern = new RegExp(patternStr);
+        const matches = importValue.match(pattern);
+        if (matches) return;
+
+        const moduleRelative = importValue.replace(`${alias}/`, '');
+        const packageFile = path.resolve(
+            process.cwd(),
+            modulesDir,
+            moduleRelative,
+            'package.json'
+        );
+        const moduleFile = path.resolve(
+            process.cwd(),
+            modulesDir,
+            `${moduleRelative}.ts`
+        );
+
+        let packageName: string;
+        if (fs.existsSync(packageFile)) {
+            packageName = JSON.parse(
+                fs.readFileSync(packageFile).toString()
+            ).name;
+        } else {
+            const relative = path.relative(
+                path.dirname(context.filename),
+                moduleFile
+            );
+            packageName = `./${relative.replace('.ts', '')}`;
+        }
+
+        context.report({
+            node,
+            messageId: 'invalidImport',
+            data: {
+                importPath: importValue,
+                updatedPath: packageName
+            },
+            fix: (fixer) => {
+                if (node.source) {
+                    return fixer.replaceText(node.source, `'${packageName}'`);
+                }
+                return null;
+            }
+        });
     };
 
 const importModulesRule = () => {
