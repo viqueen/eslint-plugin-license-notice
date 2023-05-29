@@ -67,8 +67,9 @@ const handleImportDeclaration =
                 fs.readFileSync(packageFile).toString()
             ).name;
         } else {
+            // TODO: LABSET-139 context.getFilename is deprecated, but its replacement does not work
             const relative = path.relative(
-                path.dirname(context.filename),
+                path.dirname(context.getFilename()),
                 moduleFile
             );
             packageName = `./${relative.replace('.ts', '')}`;
@@ -99,7 +100,15 @@ const importModulesRule = () => {
                     description: 'import from monorepo module'
                 },
                 fixable: 'code',
-                schema: [],
+                schema: [
+                    {
+                        type: 'object',
+                        properties: {
+                            alias: { type: 'string' },
+                            modulesDir: { type: 'string ' }
+                        }
+                    }
+                ],
                 messages: {
                     invalidImport:
                         'Import from {{importPath}} should be replaced with {{updatedPath}}'
