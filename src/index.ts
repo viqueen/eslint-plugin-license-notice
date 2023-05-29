@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { importModulesRule } from './import-modules-rule';
 import { licenseNoticeRule } from './license-notice-rule';
 
 const licenseNotice = licenseNoticeRule();
+const importModules = importModulesRule();
 
 const rules = {
-    [licenseNotice.key]: licenseNotice.rule
+    [licenseNotice.key]: licenseNotice.rule,
+    [importModules.key]: importModules.rule
 };
 
 export { rules };
