@@ -1,6 +1,6 @@
 ## eslint-plugin
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=viqueen_eslint-plugin-license-notice&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=viqueen_eslint-plugin-license-notice)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=viqueen_eslint-plugin&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=viqueen_eslint-plugin)
 [![npm version](https://badge.fury.io/js/eslint-plugin-license-notice.svg)](https://badge.fury.io/js/eslint-plugin-license-notice)
 
 A collection of eslint rules needed to ensure **labset** open-source packages are structured in a consistent way.
